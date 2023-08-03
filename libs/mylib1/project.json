@@ -1,0 +1,51 @@
+{
+  "name": "mylib1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mylib1/src",
+  "prefix": "acme",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/mylib1/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/mylib1/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/mylib1/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/mylib1/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mylib1/**/*.ts",
+          "libs/mylib1/**/*.html",
+          "libs/mylib1/package.json"
+        ]
+      }
+    }
+  }
+}

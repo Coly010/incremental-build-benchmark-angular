@@ -7,9 +7,10 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "buildLibsFromSource": true,
         "outputPath": "dist/apps/acme",
         "index": "apps/acme/src/index.html",
         "main": "apps/acme/src/main.ts",
@@ -33,6 +34,76 @@
               "maximumError": "4kb"
             }
           ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "incremental-build-webpack": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "buildLibsFromSource": false,
+        "outputPath": "dist/apps/acme",
+        "index": "apps/acme/src/index.html",
+        "main": "apps/acme/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/acme/tsconfig.app.json",
+        "assets": ["apps/acme/src/favicon.ico", "apps/acme/src/assets"],
+        "styles": ["apps/acme/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "incremental-build-esbuild": {
+      "executor": "@nx/angular:browser-esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "buildLibsFromSource": false,
+        "outputPath": "dist/apps/acme",
+        "index": "apps/acme/src/index.html",
+        "main": "apps/acme/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/acme/tsconfig.app.json",
+        "assets": ["apps/acme/src/favicon.ico", "apps/acme/src/assets"],
+        "styles": ["apps/acme/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
           "outputHashing": "all"
         },
         "development": {

@@ -15,6 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@acme/mylib1": ["libs/mylib1/src/index.ts"],
+      "@acme/mylib2": ["libs/mylib2/src/index.ts"],
+      "@acme/mylib3": ["libs/mylib3/src/index.ts"],
+      "@acme/mylib4": ["libs/mylib4/src/index.ts"],
+      "@acme/mylib5": ["libs/mylib5/src/index.ts"],
       "@acme/test": ["libs/test/src/index.ts"]
     }
   },
